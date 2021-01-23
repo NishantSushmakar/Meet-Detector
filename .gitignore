@@ -1,0 +1,3 @@
+credential.py
+*.pyc
+.ipynb_checkpoints
