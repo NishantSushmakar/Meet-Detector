@@ -22,11 +22,6 @@ def get_score(text):
    return  response
 
 
-
-
-
-
-
-text = ''
+text = 'hello'
 
 print(get_score(text))
