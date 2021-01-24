@@ -8,8 +8,9 @@ from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
 from credential import email_id,password,meeting_code
-from key import get_score
+#from key import get_score
 from bs4 import BeautifulSoup
+from remove_user import remove_user
 
 def enter_meeting(browser,email_id,password,meeting_code):
     '''
@@ -83,8 +84,9 @@ def chat_detect(browser):
     prev_div = 0 
     while(count_meeting(browser)>1):
         
-         soup = BeautifulSoup(browser.page_source, 'html.parser')
-         mydivs = soup.findAll("div", {"class": "GDhqjd"})
+        # soup = BeautifulSoup(browser.page_source, 'html.parser')
+        # mydivs = soup.findAll("div", {"class": "GDhqjd"})
+         remove_user('Calibre Project3', browser)
     '''        
          if len(mydivs) != prev_div:
             
@@ -113,7 +115,9 @@ def chat_detect(browser):
          
              prev_div = len(mydivs)
     '''
-    return 
+    return
+
+    
     
 if __name__ == "__main__":
         
