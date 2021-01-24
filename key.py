@@ -19,7 +19,7 @@ def get_score(text):
 
    response = service.comments().analyze(body=analyze_request).execute()
    #response.get('attributeScores').get('TOXICITY').get('summaryScore').get('value')
-   return  response
+   return response.get('attributeScores').get('TOXICITY').get('summaryScore').get('value')
 
 
 text = 'hello'

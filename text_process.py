@@ -1,14 +1,37 @@
+from bs4 import BeautifulSoup
+from selenium import webdriver
+import time
+from selenium.webdriver.chrome.options import Options
+from key import get_score
+from remove_user import remove_user
+
 class Node:
     def __init__(self):
         self.prev = 0
         self.sents = 0
 
-node = Node()
+def process_data(browser, node) -> Node:
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
 
-def prev_node_state():
+    mydivs = soup.findAll("div", {"class": "GDhqjd"})
+    for k in range(node.prev, len(mydivs)):
+        username = mydivs[k].find("div",{"class":"YTbUzc"}).get_text()
+        print(username)
+
+        arr = mydivs[k].find_all("div",{'class':'oIy2qc'})
+
+        start = (node.sents) if (k == node.prev) else 0 
+
+        for ind in range(start, len(arr)):
+            score = get_score(arr[ind].get_text())
+            if score >= 0.9:
+                remove_user(username, browser)
+
+        print("*"*20)
+
+    node.prev = len(mydivs) - 1
+    if (len(mydivs) != 0):
+        node.sents = len(mydivs[-1].find_all("div",{'class':'oIy2qc'}))
+
+    time.sleep(30)
     return node
-
-def process_data(data : list):
-
-    for i in data:
-        print(i)
