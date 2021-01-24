@@ -7,7 +7,7 @@ Created on Tue Jan 19 19:31:14 2021
 from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
-from credential import email_id,password
+from credential import email_id,password,chromedriver_path
 from text_process import Node, process_data
 from key import get_score
 from bs4 import BeautifulSoup
@@ -96,7 +96,7 @@ if __name__ == "__main__":
     chrome_options.add_argument('use-fake-ui-for-media-stream')
     chrome_options.add_argument('use-fake-device-for-media-stream')
     chrome_options.add_argument('allow-file-access-from-files')
-    browser = webdriver.Chrome("C:/Users/kshit/workspace_python/Selenium WebDrivers/chromedriver.exe",chrome_options=chrome_options)
+    browser = webdriver.Chrome(chromedriver_path,chrome_options=chrome_options)
     
     browser = enter_meeting(browser,email_id,password,'dii-svvp-zni')
     chat_detect(browser)
