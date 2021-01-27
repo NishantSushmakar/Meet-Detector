@@ -97,7 +97,8 @@ def chat_detect(browser):
     while(count_meeting(browser) > 1):
         node = process_data(browser, node)
         browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[3]/div/div[2]/div[2]/div[1]/div[2]').click()
-         
+    
+    browser.quit()    
     return 
     
 if __name__ == "__main__":
@@ -106,6 +107,7 @@ if __name__ == "__main__":
     chrome_options.add_argument('use-fake-ui-for-media-stream')
     chrome_options.add_argument('use-fake-device-for-media-stream')
     chrome_options.add_argument('allow-file-access-from-files')
+    
     browser = webdriver.Chrome(chromedriver_path,chrome_options=chrome_options)
     
     browser = enter_meeting(browser,email_id,password,'dii-svvp-zni')

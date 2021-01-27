@@ -4,6 +4,7 @@ import time
 from selenium.webdriver.chrome.options import Options
 from key import get_score
 from remove_user import remove_user
+from language import cvt_to_en
 
 class Node:
     def __init__(self):
@@ -31,7 +32,14 @@ def process_data(browser, node) -> Node:
                         remove_user(username, browser)
                         
                 except :
-                    print('Not english error')
+                    try:
+                       text = cvt_to_en(arr[ind].get_text()) 
+                       score = get_score(text)
+                       print(text,score)
+                       if score >= 0.9:
+                          remove_user(username, browser)
+                    except:   
+                        print('Not Supported error')
             print("*"*20)
     
         node.prev = len(mydivs) - 1
