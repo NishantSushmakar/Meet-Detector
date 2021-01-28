@@ -4,3 +4,12 @@ This App Helps to :detective: Detect and Prevent any abuse on Google Meet Platfo
 
 <img src ='https://image.freepik.com/free-vector/cyber-bullying-illustration-concept_23-2148588936.jpg' width = 450>
 
+## Technology Stack
+* Python :snake: 
+* Google Perspective API 
+* Google Cloud Services 
+* Google Translation API
+* Chrome Web Driver
+* Node JS
+* HTML
+* CSS
