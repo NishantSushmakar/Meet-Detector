@@ -9,7 +9,14 @@ from bs4 import BeautifulSoup
 import time
 
 
-
+def issue_warning(username, browser):
+    text_area = browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[3]/div/div[2]/div[2]/div[2]/span[2]/div/div[4]/div[1]/div[1]/div[2]/textarea')
+    text_area.click()
+    message = '{} please maintain the decorum of the meeting'.format(username)
+    text_area.send_keys(message)
+    time.sleep(3)
+    browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[3]/div/div[2]/div[2]/div[2]/span[2]/div/div[4]/div[2]').click()
+    return
 
 
 def remove_user(name,browser):

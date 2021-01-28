@@ -3,15 +3,18 @@ from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
 from key import get_score
-from remove_user import remove_user
+from remove_user import remove_user, issue_warning
+from language import cvt_to_en
 
 class Node:
     def __init__(self):
         self.prev = 0
         self.sents = 0
 
-def process_data(browser, node) -> Node:
+def process_data(browser, node, offenders_count) -> Node:
     soup = BeautifulSoup(browser.page_source, 'html.parser')
+
+    issue_warning('Mukesh Ambani', browser)
 
     mydivs = soup.findAll("div", {"class": "GDhqjd"})
     try :
@@ -29,9 +32,21 @@ def process_data(browser, node) -> Node:
                     print(arr[ind].get_text(),score)
                     if score >= 0.9:
                         remove_user(username, browser)
-                        
+                    elif score >= 0.85:
+                        if username not in offenders_count.keys():
+                            offenders_count[username] = 1
+                            issue_warning(username, browser)
+                        else:
+                            remove_user(username, browser)
                 except :
-                    print('Not english error')
+                    try:
+                        text = cvt_to_en(arr[ind].get_text()) 
+                        score = get_score(text)
+                        print(text,score)
+                        if score >= 0.9:
+                            remove_user(username, browser)
+                    except:   
+                        print('Not Supported error')
             print("*"*20)
     
         node.prev = len(mydivs) - 1

@@ -34,11 +34,20 @@ def enter_meeting(browser,email_id,password,meeting_code):
     password_element.send_keys(password)
     browser.find_element_by_xpath('//*[@id="passwordNext"]/div/button/div[2]').click()
     time.sleep(5)
-    browser.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div/div[2]/div[2]/div[2]/div/c-wiz/div[1]/div/div/div[1]/div').click()
-    time.sleep(10)
-    meeting_element = browser.find_element_by_xpath('//*[@id="yDmH0d"]/div[3]/div/div[2]/span/div/div[2]/div[1]/div[1]/input')
-    meeting_element.send_keys(meeting_code)
-    browser.find_element_by_xpath('//*[@id="yDmH0d"]/div[3]/div/div[2]/span/div/div[4]/div[2]/div/span/span').click()
+    try :
+        print("First Entering Method")
+        browser.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div/div[2]/div[2]/div[2]/div/c-wiz/div[1]/div/div/div[1]/div').click()
+        time.sleep(10)
+        meeting_element = browser.find_element_by_xpath('//*[@id="yDmH0d"]/div[3]/div/div[2]/span/div/div[2]/div[1]/div[1]/input')
+        meeting_element.send_keys(meeting_code)
+        browser.find_element_by_xpath('//*[@id="yDmH0d"]/div[3]/div/div[2]/span/div/div[4]/div[2]/div/span/span').click()
+    except:
+        print('Another Entering Method')
+        meeting_element = browser.find_element_by_xpath('//*[@id="i3"]')
+        meeting_element.click()
+        time.sleep(3)
+        meeting_element.send_keys(meeting_code)
+        browser.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div[2]/div/div[1]/div[3]/div[2]/div[2]/button/div[2]').click()
     time.sleep(10)
     browser.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div[8]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]/div/div[3]/div[1]/div/div/div').click()
     browser.find_element_by_xpath('//*[@id="yDmH0d"]/c-wiz/div/div/div[8]/div[3]/div/div/div[2]/div/div[1]/div[1]/div[1]/div/div[3]/div[2]/div/div').click()
@@ -84,11 +93,13 @@ def chat_detect(browser):
     prev_div = 0 
 
     node = Node()
+    offenders_count = {}
 
     while(count_meeting(browser) > 1):
-        node = process_data(browser, node)
+        node = process_data(browser, node, offenders_count)
         browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[3]/div/div[2]/div[2]/div[1]/div[2]').click()
-         
+    
+    browser.quit()    
     return 
     
 if __name__ == "__main__":
@@ -97,7 +108,8 @@ if __name__ == "__main__":
     chrome_options.add_argument('use-fake-ui-for-media-stream')
     chrome_options.add_argument('use-fake-device-for-media-stream')
     chrome_options.add_argument('allow-file-access-from-files')
+    
     browser = webdriver.Chrome(chromedriver_path,chrome_options=chrome_options)
     
-    browser = enter_meeting(browser,email_id,password,'dii-svvp-zni')
+    browser = enter_meeting(browser,email_id,password,'awa-pdxc-gha')
     chat_detect(browser)

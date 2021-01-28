@@ -4,3 +4,4 @@ credential.py
 .vscode
 youtube.py
 debug.log
+__pycache__
