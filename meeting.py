@@ -96,7 +96,7 @@ def chat_detect(browser):
     offenders_count = {}
 
     while(count_meeting(browser) > 1):
-        node = process_data(browser, node, offenders_count)
+        node, offenders_count = process_data(browser, node, offenders_count)
         browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[3]/div/div[2]/div[2]/div[1]/div[2]').click()
     
     browser.quit()    
