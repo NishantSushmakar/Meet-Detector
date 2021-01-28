@@ -14,8 +14,6 @@ class Node:
 def process_data(browser, node, offenders_count) -> Node:
     soup = BeautifulSoup(browser.page_source, 'html.parser')
 
-    issue_warning('Mukesh Ambani', browser)
-
     mydivs = soup.findAll("div", {"class": "GDhqjd"})
     try :
         for k in range(node.prev, len(mydivs)):
