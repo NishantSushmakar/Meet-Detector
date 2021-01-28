@@ -38,11 +38,17 @@ def process_data(browser, node, offenders_count) -> Node:
                             remove_user(username, browser)
                 except :
                     try:
-                       text = cvt_to_en(arr[ind].get_text()) 
-                       score = get_score(text)
-                       print(text,score)
-                       if score >= 0.9:
-                          remove_user(username, browser)
+                        text = cvt_to_en(arr[ind].get_text()) 
+                        score = get_score(text)
+                        print(text,score)
+                        if score >= 0.9:
+                            remove_user(username, browser)
+                        elif score >= 0.85:
+                            if username not in offenders_count.keys():
+                                offenders_count[username] = 1
+                                issue_warning(username, browser)
+                            else:
+                                remove_user(username, browser)
                     except:   
                         print('Not Supported error')
             print("*"*20)

@@ -111,5 +111,5 @@ if __name__ == "__main__":
     
     browser = webdriver.Chrome(chromedriver_path,chrome_options=chrome_options)
     
-    browser = enter_meeting(browser,email_id,password,'awa-pdxc-gha')
+    browser = enter_meeting(browser,email_id,password,'edi-guzq-knb')
     chat_detect(browser)
