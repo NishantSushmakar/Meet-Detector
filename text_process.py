@@ -55,4 +55,4 @@ def process_data(browser, node, offenders_count) -> Node:
     except :
          print('Index Error')           
     time.sleep(30)
-    return node
+    return node, offenders_count
