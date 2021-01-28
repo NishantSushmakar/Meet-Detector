@@ -3,11 +3,7 @@ from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
 from key import get_score
-<<<<<<< HEAD
 from remove_user import remove_user, issue_warning
-=======
-from remove_user import remove_user
->>>>>>> 1b979228f330c9cb97dc756e0d7bda537826eb07
 from language import cvt_to_en
 
 class Node:
@@ -44,19 +40,11 @@ def process_data(browser, node, offenders_count) -> Node:
                             remove_user(username, browser)
                 except :
                     try:
-<<<<<<< HEAD
-                        text = cvt_to_en(arr[ind].get_text()) 
-                        score = get_score(text)
-                        print(text,score)
-                        if score >= 0.9:
-                            remove_user(username, browser)
-=======
                        text = cvt_to_en(arr[ind].get_text()) 
                        score = get_score(text)
                        print(text,score)
                        if score >= 0.9:
                           remove_user(username, browser)
->>>>>>> 1b979228f330c9cb97dc756e0d7bda537826eb07
                     except:   
                         print('Not Supported error')
             print("*"*20)
