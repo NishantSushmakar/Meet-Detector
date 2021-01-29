@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Tue Jan 19 19:31:14 2021
-
-@author: nishant
-"""
 from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
