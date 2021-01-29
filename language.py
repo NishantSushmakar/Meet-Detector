@@ -1,4 +1,3 @@
-
 from googletrans import Translator
 
 

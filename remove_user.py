@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 24 14:31:02 2021
-
-@author: nishant
-"""
 from selenium import webdriver
 from bs4 import BeautifulSoup
 import time

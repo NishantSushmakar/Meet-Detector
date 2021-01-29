@@ -1,9 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Wed Jan 20 17:47:48 2021
-
-@author: nishant
-"""
 from googleapiclient import discovery
 
 API_KEY='AIzaSyClYMRcU7puoRD61T4ddvTU5SDjy7M-5EY'
