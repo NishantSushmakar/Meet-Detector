@@ -94,5 +94,5 @@ def process_data(browser, node, offenders_count) -> Node:
             node.sents = len(mydivs[-1].find_all("div",{'class':'oIy2qc'}))
     except :
          print('Index Error')           
-    time.sleep(30)
+    
     return node, offenders_count

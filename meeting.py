@@ -95,8 +95,8 @@ def captions(browser, adminUsername, offenders_count):
                     break
     except:
         print('Attribute Error')
-
-    time.sleep(8)
+    time.sleep(8) 
+    
     return offenders_count
 
 def chat_detect(browser, adminUsername):
@@ -118,7 +118,7 @@ def chat_detect(browser, adminUsername):
         browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[4]/div/div[2]/div[2]/div[1]/div[2]').click()
         node, offenders_count = process_data(browser, node, offenders_count)
         browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[4]/div/div[2]/div[2]/div[1]/div[2]').click()
-    
+        time.sleep(30)
     browser.quit()    
     return 
 
@@ -138,7 +138,7 @@ if __name__ == "__main__":
     
     browser = webdriver.Chrome(chromedriver_path,chrome_options=chrome_options)
     
-    browser = enter_meeting(browser,email_id,password,'svp-vhhb-wcd')
+    browser = enter_meeting(browser,email_id,password,'dii-svvp-zni')
 
     adminUsername = extract_username(browser)
     print(adminUsername)

@@ -16,6 +16,6 @@ def get_score(text):
    return response.get('attributeScores').get('TOXICITY').get('summaryScore').get('value')
 
 
-#text = 'hello'
+#text = ''
 
 #print(get_score(text))
