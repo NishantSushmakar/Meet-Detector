@@ -22,7 +22,7 @@ def remove_user(name,browser):
     Function removes the user 
     
     '''
-    browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[3]/div/div[2]/div[2]/div[1]/div[1]/span/div').click()
+    browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[4]/div/div[2]/div[2]/div[1]/div[1]').click()
     search = BeautifulSoup(browser.page_source, 'html.parser')
     users = search.find_all("div",{'class':'KV1GEc'})
     i = 1
@@ -33,16 +33,16 @@ def remove_user(name,browser):
         print(user_name[0].get_text())
         if user_name[0].get_text()==name :
                    
-            browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[3]/div/div[2]/div[2]/div[2]/span[1]/div[2]/div[2]/div/div[{}]/div[2]/div[2]/div'.format(i)).click()
+            browser.find_element_by_xpath(f'//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[4]/div/div[2]/div[2]/div[2]/span[1]/div[2]/div[2]/div/div[{i}]/div[2]/div[2]').click()
             flag = True
             break
         i += 1
         
     if flag == True :
         time.sleep(8)
-        browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[3]/div/div[2]/div[2]/div[2]/span[1]/div[4]/div/div/span[2]').click()
+        browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[4]/div/div[2]/div[2]/div[2]/span[1]/div[4]/div/div/span[2]/div[3]/div').click()
         time.sleep(5)
-        browser.find_element_by_xpath('//*[@id="yDmH0d"]/div[3]/div/div[2]/div[3]/div[2]/span').click()
+        browser.find_element_by_xpath('//*[@id="yDmH0d"]/div[3]/div/div[2]/div[3]/div[2]/span/span').click()
     
     
     return browser
