@@ -2,11 +2,10 @@ from selenium import webdriver
 import time
 from selenium.webdriver.chrome.options import Options
 from credential import email_id,password,chromedriver_path,meeting_code
-from text_process import Node, process_data
+from text_process import Node, process_data, process_caption
 from key import get_score
 from bs4 import BeautifulSoup
 from multiprocessing import Process
-
 
 def enter_meeting(browser,email_id,password,meeting_code):
     '''
@@ -71,25 +70,36 @@ def count_meeting(browser):
     return int(count_element.text.strip('()')) 
 
 
-def process_captions(browser):
-   print("This is Process Captions Function") 
-   while count_meeting(browser)>1:
-       soup = BeautifulSoup(browser.page_source, 'html.parser')
-       mydivs = soup.findAll("div", {"class": "a4cQT xiCV9b"})
-       try:
-           for i in range(len(mydivs)):
-            print(mydivs[i].find('div',{'class':'zs7s8d jxFHg'}).get_text())
+def captions(browser, adminUsername, offenders_count):
+    # caption_element = browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[6]')
+
+    # browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[9]/div[3]/div[2]/div/span/span/div').click()
+    # soup = BeautifulSoup(browser.page_source, 'html.parser')
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    mydivs = soup.findAll("div", {"class": "a4cQT xiCV9b"})
+
+    try:
+        for i in range(len(mydivs)):
+            username = mydivs[i].find('div',{'class':'zs7s8d jxFHg'}).get_text()
+
+            if username == adminUsername:
+                continue
+
+            print(username)
             print('*'*20)
             for k in range(len(mydivs[i].findAll('span',{'class':'CNusmb'}))):
-                
-                print(mydivs[i].findAll('span',{'class':'CNusmb'})[k].get_text())
-        
-       except:
-           print('AttributeError')
-       time.sleep(8)
-   return browser 
+                sentence = mydivs[i].findAll('span',{'class':'CNusmb'})[k].get_text()
+                print(sentence)
+                res, offenders_count = process_caption(browser, username, sentence, offenders_count)
+                if res == True:
+                    break
+    except:
+        print('Attribute Error')
 
-def chat_detect(browser):
+    time.sleep(8)
+    return offenders_count
+
+def chat_detect(browser, adminUsername):
     '''
     Input
     Browser Object
@@ -104,11 +114,20 @@ def chat_detect(browser):
     offenders_count = {}
 
     while(count_meeting(browser) > 1):
+        offenders_count = captions(browser, adminUsername, offenders_count)
+        browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[4]/div/div[2]/div[2]/div[1]/div[2]').click()
         node, offenders_count = process_data(browser, node, offenders_count)
         browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[4]/div/div[2]/div[2]/div[1]/div[2]').click()
     
     browser.quit()    
     return 
+
+def extract_username(browser):
+
+    browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[1]/div[3]/div/div[2]/div[1]').click()
+    soup = BeautifulSoup(browser.page_source, 'html.parser')
+    adminUsername = soup.find('span', {'class' : 'ZjFb7c'}).get_text()
+    return adminUsername
     
 if __name__ == "__main__":
         
@@ -119,11 +138,15 @@ if __name__ == "__main__":
     
     browser = webdriver.Chrome(chromedriver_path,chrome_options=chrome_options)
     
-    browser = enter_meeting(browser,email_id,password,meeting_code)
-    browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[1]/div[3]/div/div[2]/div[3]/span/span').click()
+    browser = enter_meeting(browser,email_id,password,'svp-vhhb-wcd')
+
+    adminUsername = extract_username(browser)
+    print(adminUsername)
+
+    time.sleep(5)
+    browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[4]/div/div[2]/div[2]/div[1]/div[2]').click()
     time.sleep(5)
     browser.find_element_by_xpath('//*[@id="ow3"]/div[1]/div/div[8]/div[3]/div[9]/div[3]/div[2]/div/span/span/div').click()
-    time.sleep(5)
     #chat_detect(browser)
-    process_captions(browser)
+    chat_detect(browser, adminUsername)
     

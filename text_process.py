@@ -11,6 +11,42 @@ class Node:
         self.prev = 0
         self.sents = 0
 
+def process_caption(browser, username, sentence, offenders_count):
+
+    ''' This will process each caption '''
+    try :
+        score = get_score(sentence)
+        
+        if score >= 0.9:
+            remove_user(username, browser)
+            return True, offenders_count
+        elif score >= 0.85:
+            if username not in offenders_count.keys():
+                offenders_count[username] = 1
+                issue_warning(username, browser)
+            else:
+                remove_user(username, browser)
+                return True, offenders_count
+    except :
+        try:
+            text = cvt_to_en(sentence) 
+            score = get_score(text)
+            print(text,score)
+            if score >= 0.9:
+                remove_user(username, browser)
+                return True, offenders_count
+            elif score >= 0.85:
+                if username not in offenders_count.keys():
+                    offenders_count[username] = 1
+                    issue_warning(username, browser)
+                else:
+                    remove_user(username, browser)
+                    return True, offenders_count
+        except:   
+            print('Not Supported error')
+
+    return False, offenders_count
+    
 def process_data(browser, node, offenders_count) -> Node:
     soup = BeautifulSoup(browser.page_source, 'html.parser')
 
