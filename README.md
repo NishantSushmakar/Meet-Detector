@@ -8,7 +8,7 @@ This App Helps to :detective: Detect and Prevent any abuse on Google Meet Platfo
 * Python :snake: 
 * Google Perspective API 
 * Google Cloud Services 
-* Google Translation API
+* GoogleTrans
 * Chrome Web Driver
 * Node JS
 * HTML
