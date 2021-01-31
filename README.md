@@ -14,7 +14,7 @@ This App Helps to :detective: Detect and Prevent any abuse on Google Meet Platfo
 * HTML
 * CSS
 
-To get started
+## To get started
 1. Clone the project on your system
 2. Make sure you have Node and MongoDB installed in your computer
 3. Run Command - npm install
