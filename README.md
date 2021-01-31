@@ -13,3 +13,11 @@ This App Helps to :detective: Detect and Prevent any abuse on Google Meet Platfo
 * Node JS
 * HTML
 * CSS
+
+To get started
+1. Clone the project on your system
+2. Make sure you have Node and MongoDB installed in your computer
+3. Run Command - npm install
+to install the dependencies
+4. create .env file and add the credentials for EmailId and Password
+5. Create credentials.py file to add path for chrome driver
