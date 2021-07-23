@@ -22,4 +22,14 @@ to install the dependencies
 4. create .env file and add the credentials for EmailId and Password
 5. Create credentials.py file to add path for chrome driver
 
-[![DEMO](https://www.youtube.com/embed/m3st_4w1FVk.jpg)](https://www.youtube.com/embed/m3st_4w1FVk)
+## Demo
+
+<div align="center">
+      <a href="https://www.youtube.com/watch?v=m3st_4w1FVk">
+     <img 
+      src="https://github.com/kshitij123456/HackViolet-Project/blob/FinalCode/images/vc2.png" 
+      alt="DEMO" 
+      style="width:100%;">
+      </a>
+    </div>
+    
