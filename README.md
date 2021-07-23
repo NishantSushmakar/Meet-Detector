@@ -21,3 +21,5 @@ This App Helps to :detective: Detect and Prevent any abuse on Google Meet Platfo
 to install the dependencies
 4. create .env file and add the credentials for EmailId and Password
 5. Create credentials.py file to add path for chrome driver
+
+[![DEMO](https://www.youtube.com/embed/m3st_4w1FVk.jpg)](https://www.youtube.com/embed/m3st_4w1FVk)
